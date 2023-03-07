@@ -20,7 +20,10 @@ function onSubmit(e){
         };
         myObj_serialized=JSON.stringify(myObj);
         localStorage.setItem("MyObj",myObj_serialized);
-        let myObj_deserialized=JSON.parse(localStorage.getItem("MyObj"));
-        console.log(myObj_deserialized);
+        showUsers(myObj);
     }
+    function showUsers(Obj){
+    let parent= document.getElementById('users');
+    parent.innerHTML=parent.innerHTML+`<li> ${Obj.name} - ${Obj.email}</li>`;
+}
 }
