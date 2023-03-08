@@ -35,8 +35,20 @@ function onSubmit(e){
         parent.removeChild(child);
         localStorage.removeItem(Obj.name);
      }
-
+     let edit =document.createElement('input');
+     edit.class='btn';
+     edit.type='button';
+     edit.value='edit';
+     edit.onclick=()=>{
+        let n=document.getElementById('name');
+        n.value=Obj.name;
+        let e=document.getElementById('email');
+        e.value=Obj.email;
+        localStorage.removeItem(Obj.name);
+     }
+     
      child.appendChild(del);
+     child.appendChild(edit);
      parent.appendChild(child);
 
     }
