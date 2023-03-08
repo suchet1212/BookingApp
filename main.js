@@ -11,19 +11,34 @@ function onSubmit(e){
         alert('Enter your Username and Email ID');
     }
     else{
-        localStorage.setItem('name1',names.value);
-        localStorage.setItem('email1',email.value);
+        //localStorage.setItem('name1',names.value);
+        //localStorage.setItem('email1',email.value);
 
         let myObj={
             name:names.value,
             email:email.value
         };
         myObj_serialized=JSON.stringify(myObj);
-        localStorage.setItem("MyObj",myObj_serialized);
+        localStorage.setItem(myObj.name,myObj_serialized);
         showUsers(myObj);
     }
     function showUsers(Obj){
     let parent= document.getElementById('users');
-    parent.innerHTML=parent.innerHTML+`<li> ${Obj.name} - ${Obj.email}</li>`;
+    let child=document.createElement('li');
+    child.textContent=Obj.name+" - "+Obj.email;
+     let del=document.createElement('input');
+     del.class='btn';
+     del.type='button';
+     del.value='delete';
+     
+     del.onclick=()=>{
+        parent.removeChild(child);
+        localStorage.removeItem(Obj.name);
+     }
+
+     child.appendChild(del);
+     parent.appendChild(child);
+
+    }
 }
-}
+
